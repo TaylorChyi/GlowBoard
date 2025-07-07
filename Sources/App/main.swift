@@ -1,13 +1,26 @@
+import Foundation
+#if canImport(SwiftUI)
 import SwiftUI
 import Presentation
 import Infrastructure
 import Domain
+#endif
 
+#if canImport(SwiftUI)
 @main
 struct GlowBoardApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let repository = InMemoryScriptRepository()
+            ContentView(viewModel: ScriptViewModel(repository: repository))
         }
     }
 }
+#else
+@main
+enum GlowBoardApp {
+    static func main() {
+        // Empty main for non-SwiftUI platforms
+    }
+}
+#endif
