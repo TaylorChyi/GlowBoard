@@ -1,5 +1,6 @@
 import XCTest
 @testable import Domain
+@testable import Infrastructure
 
 final class DomainTests: XCTestCase {
     func testWordCount() throws {
@@ -7,6 +8,17 @@ final class DomainTests: XCTestCase {
         XCTAssertEqual(script.wordCount(), 4)
     }
 
+    func testSettingsRepositoryStoresColor() throws {
+        let repository = InMemorySettingsRepository()
+        var settings = repository.load()
+        XCTAssertEqual(settings.textColor, .white)
+
+        let newColor = RGBAColor(red: 0, green: 0, blue: 1)
+        settings.textColor = newColor
+        repository.save(settings)
+
+        let loaded = repository.load()
+        XCTAssertEqual(loaded.textColor, newColor)
     func testFontName() throws {
         let script = Script(text: "Test", font: FontSetting(fontName: "Helvetica"))
         XCTAssertEqual(script.font.fontName, "Helvetica")
