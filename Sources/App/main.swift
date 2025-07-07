@@ -9,6 +9,10 @@ import Domain
 #if canImport(SwiftUI)
 @main
 struct GlowBoardApp: App {
+    private let repository = InMemoryScriptRepository(
+        scripts: [Script(text: "Welcome to GlowBoard. This sample text demonstrates scrolling subtitles.")]
+    )
+
     var body: some Scene {
         WindowGroup {
             let repository = InMemoryScriptRepository()

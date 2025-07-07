@@ -33,6 +33,11 @@ let package = Package(
             name: "DomainTests",
             dependencies: ["Domain", "Infrastructure"],
             path: "Tests/DomainTests"
+        ),
+        .testTarget(
+            name: "InfrastructureTests",
+            dependencies: ["Infrastructure", "Domain"],
+            path: "Tests/InfrastructureTests"
         )
     ]
 )

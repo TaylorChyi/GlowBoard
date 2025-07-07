@@ -1,6 +1,7 @@
 import Domain
 #if canImport(SwiftUI)
 import SwiftUI
+import Domain
 
 public struct ContentView: View {
     @StateObject private var viewModel: ScriptViewModel
