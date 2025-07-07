@@ -1,7 +1,7 @@
 import XCTest
-@testable import GlowBoard
+@testable import Domain
 
-final class GlowBoardTests: XCTestCase {
+final class DomainTests: XCTestCase {
     func testWordCount() throws {
         let script = Script(text: "Hello world from GlowBoard")
         XCTAssertEqual(script.wordCount(), 4)
