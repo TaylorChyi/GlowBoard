@@ -1,8 +1,12 @@
+import Foundation
+#if canImport(SwiftUI)
 import SwiftUI
 import Presentation
 import Infrastructure
 import Domain
+#endif
 
+#if canImport(SwiftUI)
 @main
 struct GlowBoardApp: App {
     private let repository = InMemoryScriptRepository(
@@ -11,11 +15,16 @@ struct GlowBoardApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if let script = repository.fetchScripts().first {
-                ContentView(script: script)
-            } else {
-                ContentView(script: Script(text: ""))
-            }
+            let repository = InMemoryScriptRepository()
+            ContentView(viewModel: ScriptViewModel(repository: repository))
         }
     }
 }
+#else
+@main
+enum GlowBoardApp {
+    static func main() {
+        // Empty main for non-SwiftUI platforms
+    }
+}
+#endif

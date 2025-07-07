@@ -1,25 +1,49 @@
+import Domain
+#if canImport(SwiftUI)
 import SwiftUI
 import Domain
 
 public struct ContentView: View {
-    private let script = Script(text: "Hello from GlowBoard")
-    @State private var settings = ScriptPlaybackSettings()
+    @StateObject private var viewModel: ScriptViewModel
+    @State private var showingEditor = false
 
-    public init() {}
+    public init(viewModel: ScriptViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     public var body: some View {
-        VStack {
-            PlaybackTextView(script: script, settings: settings)
-                .padding()
-            Toggle("Mirror Text", isOn: $settings.isMirrored)
-                .padding()
+        NavigationView {
+            List {
+                ForEach(viewModel.scripts) { script in
+                    Text(script.text)
+                        .lineLimit(1)
+                }
+                .onDelete(perform: viewModel.deleteScripts)
+            }
+            .navigationTitle("Scripts")
+            .toolbar {
+                Button(action: { showingEditor = true }) {
+                    Image(systemName: "plus")
+                }
+            }
+            .sheet(isPresented: $showingEditor) {
+                ScriptEditorView { text in
+                    viewModel.addScript(text: text)
+                }
+            }
         }
     }
-}
+} 
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(script: Script(text: "Preview text for GlowBoard scrolling demo."))
+        ContentView(viewModel: ScriptViewModel(repository: InMemoryScriptRepository()))
     }
+}
+#endif
+#else
+public struct ContentView {
+    public init(viewModel: ScriptViewModel) {}
 }
 #endif
