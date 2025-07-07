@@ -40,6 +40,7 @@ let package = Package(
         ),
         .testTarget(
             name: "InfrastructureTests",
+            dependencies: ["Infrastructure"],
             dependencies: ["Infrastructure", "Domain"],
             path: "Tests/InfrastructureTests"
         )
