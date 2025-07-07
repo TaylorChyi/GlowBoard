@@ -15,6 +15,13 @@ public struct ContentView: View {
         self._fontSize = State(initialValue: settingsRepository.loadSettings().fontSize)
 
 public struct ContentView: View {
+    private let provider: LocalizedStringProvider
+    public init(provider: LocalizedStringProvider = LocalizationService()) {
+        self.provider = provider
+    }
+    public var body: some View {
+        Text(provider.localizedString(forKey: "placeholder_text"))
+            .padding()
     @StateObject private var viewModel: SettingsViewModel
 
     public init(repository: SettingsRepository) {

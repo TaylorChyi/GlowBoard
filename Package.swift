@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "GlowBoard",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v15)
     ],
@@ -22,7 +23,10 @@ let package = Package(
         .target(
             name: "Presentation",
             dependencies: ["Domain"],
-            path: "Sources/Presentation"
+            path: "Sources/Presentation",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .executableTarget(
             name: "App",
