@@ -20,4 +20,11 @@ final class DomainTests: XCTestCase {
         let loaded = repository.load()
         XCTAssertEqual(loaded.textColor, newColor)
     }
+    func testDisplaySettingsInitialization() throws {
+        let color = RGBAColor(red: 1, green: 0, blue: 0)
+        let settings = DisplaySettings(backgroundColor: color)
+        XCTAssertEqual(settings.backgroundColor, color)
+    }
+
 }
+
