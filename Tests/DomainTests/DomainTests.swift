@@ -11,4 +11,11 @@ final class DomainTests: XCTestCase {
         let script = Script(text: "Test", font: FontSetting(fontName: "Helvetica"))
         XCTAssertEqual(script.font.fontName, "Helvetica")
     }
+    func testDisplaySettingsInitialization() throws {
+        let color = RGBAColor(red: 1, green: 0, blue: 0)
+        let settings = DisplaySettings(backgroundColor: color)
+        XCTAssertEqual(settings.backgroundColor, color)
+    }
+
 }
+
