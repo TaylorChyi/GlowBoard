@@ -1,7 +1,7 @@
 import Foundation
 import Domain
 
-public final class InMemorySettingsRepository: SettingsRepository {
+public final class InMemoryDisplaySettingsRepository: DisplaySettingsRepository {
     private var currentSettings: DisplaySettings
 
     public init(settings: DisplaySettings = DisplaySettings()) {

@@ -25,7 +25,7 @@ Sources/
 
 ## 用户设置模块
 
-为保持高内聚、低耦合，用户偏好如字体大小封装为 `UserSettings` 结构体，并通过 `UserSettingsRepository` 协议读写。展示层依赖该协议，默认实现 `InMemoryUserSettingsRepository` 位于数据层，可根据需要替换成持久化存储。
+为保持高内聚、低耦合，用户偏好如字体大小封装为 `UserSettings` 结构体，并通过 `SettingsRepository` 协议读写。展示层依赖该协议，默认实现 `InMemorySettingsRepository` 位于数据层，可根据需要替换成持久化存储。
 
 ## 解耦原则
 

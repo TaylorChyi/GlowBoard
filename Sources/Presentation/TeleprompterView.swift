@@ -1,5 +1,6 @@
-import SwiftUI
 import Domain
+#if canImport(SwiftUI)
+import SwiftUI
 
 public struct TeleprompterView: View {
     private let script: Script
@@ -42,3 +43,4 @@ public struct TeleprompterView: View {
         }
     }
 }
+#endif

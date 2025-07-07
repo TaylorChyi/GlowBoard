@@ -19,6 +19,8 @@ final class DomainTests: XCTestCase {
 
         let loaded = repository.load()
         XCTAssertEqual(loaded.textColor, newColor)
+    }
+
     func testFontName() throws {
         let script = Script(text: "Test", font: FontSetting(fontName: "Helvetica"))
         XCTAssertEqual(script.font.fontName, "Helvetica")
