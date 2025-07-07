@@ -2,14 +2,17 @@ import SwiftUI
 import Domain
 
 public struct ContentView: View {
-    private let script: Script
+    private let script = Script(text: "Hello from GlowBoard")
+    @State private var settings = ScriptPlaybackSettings()
 
-    public init(script: Script) {
-        self.script = script
-    }
-
+    public init() {}
     public var body: some View {
-        TeleprompterView(script: script)
+        VStack {
+            PlaybackTextView(script: script, settings: settings)
+                .padding()
+            Toggle("Mirror Text", isOn: $settings.isMirrored)
+                .padding()
+        }
     }
 }
 
