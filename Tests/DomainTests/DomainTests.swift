@@ -6,4 +6,9 @@ final class DomainTests: XCTestCase {
         let script = Script(text: "Hello world from GlowBoard")
         XCTAssertEqual(script.wordCount(), 4)
     }
+
+    func testFontName() throws {
+        let script = Script(text: "Test", font: FontSetting(fontName: "Helvetica"))
+        XCTAssertEqual(script.font.fontName, "Helvetica")
+    }
 }
