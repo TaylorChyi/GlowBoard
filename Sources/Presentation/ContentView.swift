@@ -1,9 +1,12 @@
 import SwiftUI
 
 public struct ContentView: View {
-    public init() {}
+    private let provider: LocalizedStringProvider
+    public init(provider: LocalizedStringProvider = LocalizationService()) {
+        self.provider = provider
+    }
     public var body: some View {
-        Text("GlowBoard Placeholder")
+        Text(provider.localizedString(forKey: "placeholder_text"))
             .padding()
     }
 }
