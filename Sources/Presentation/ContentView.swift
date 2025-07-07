@@ -2,6 +2,16 @@ import Domain
 #if canImport(SwiftUI)
 import SwiftUI
 import Domain
+
+public struct ContentView: View {
+    private let script: Script
+
+    public init(script: Script) {
+        self.script = script
+    }
+
+    public var body: some View {
+        TeleprompterView(script: script)
 #if canImport(Infrastructure)
 import Infrastructure
 #endif
@@ -134,6 +144,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
+        ContentView(script: Script(text: "Preview text for GlowBoard scrolling demo."))
         ContentView(viewModel: SettingsViewModel(repository: PreviewRepository()))
         ContentView(settingsRepository: InMemoryUserSettingsRepository())
         ContentView(repository: InMemorySettingsRepository())
