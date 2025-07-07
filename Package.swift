@@ -31,11 +31,12 @@ let package = Package(
         ),
         .testTarget(
             name: "DomainTests",
-            dependencies: ["Domain"],
+            dependencies: ["Domain", "Infrastructure"],
             path: "Tests/DomainTests"
         ),
         .testTarget(
             name: "InfrastructureTests",
+            dependencies: ["Infrastructure"],
             dependencies: ["Infrastructure", "Domain"],
             path: "Tests/InfrastructureTests"
         )
