@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "GlowBoard",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v15)
     ],
@@ -22,7 +23,10 @@ let package = Package(
         .target(
             name: "Presentation",
             dependencies: ["Domain"],
-            path: "Sources/Presentation"
+            path: "Sources/Presentation",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .executableTarget(
             name: "App",
@@ -31,11 +35,12 @@ let package = Package(
         ),
         .testTarget(
             name: "DomainTests",
-            dependencies: ["Domain"],
+            dependencies: ["Domain", "Infrastructure"],
             path: "Tests/DomainTests"
         ),
         .testTarget(
             name: "InfrastructureTests",
+            dependencies: ["Infrastructure"],
             dependencies: ["Infrastructure", "Domain"],
             path: "Tests/InfrastructureTests"
         )
