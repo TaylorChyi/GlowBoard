@@ -1,6 +1,9 @@
-import SwiftUI
 import Domain
+#if canImport(SwiftUI)
+import SwiftUI
+#if canImport(UIKit)
 import UIKit
+#endif
 
 public extension Color {
     init(rgbaColor: RGBAColor) {
@@ -15,25 +18,27 @@ public extension Color {
 
     func toRGBAColor() -> RGBAColor {
         #if canImport(UIKit)
-
-extension Color {
-    init(_ color: RGBAColor) {
-        self.init(red: color.red, green: color.green, blue: color.blue, opacity: color.alpha)
+        let uiColor = UIColor(self)
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return RGBAColor(red: Double(r), green: Double(g), blue: Double(b), alpha: Double(a))
+        #else
+        return RGBAColor(red: 0, green: 0, blue: 0, alpha: 1)
+        #endif
     }
 }
 
-extension RGBAColor {
-    init(_ color: Color) {
+public extension RGBAColor {
+    init(color: Color) {
         #if canImport(UIKit)
         let uiColor = UIColor(color)
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
-        UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
-        return RGBAColor(red: Double(r), green: Double(g), blue: Double(b), alpha: Double(a))
-        #else
-        return .white
         uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
         self.init(red: Double(r), green: Double(g), blue: Double(b), alpha: Double(a))
         #else
@@ -41,3 +46,4 @@ extension RGBAColor {
         #endif
     }
 }
+#endif

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct FontSetting {
+public struct FontSetting: Codable, Equatable {
     public var fontName: String
 
     public init(fontName: String) {

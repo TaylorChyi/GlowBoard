@@ -1,5 +1,6 @@
-import SwiftUI
 import Domain
+#if canImport(SwiftUI)
+import SwiftUI
 
 /// Displays script text with optional mirroring for teleprompter usage.
 public struct PlaybackTextView: View {
@@ -16,3 +17,4 @@ public struct PlaybackTextView: View {
             .scaleEffect(x: settings.isMirrored ? -1 : 1, y: 1)
     }
 }
+#endif
