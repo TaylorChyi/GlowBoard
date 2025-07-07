@@ -6,6 +6,7 @@
 - 主要使用 **Swift 5** 编写，遵循 Apple 的 [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)。
 - 类型名使用 `PascalCase`，变量和函数名使用 `camelCase`。
 - 所有用户界面应保持简洁、自然，避免过度装饰，符合 README 中描述的设计理念。
+- 代码、注释及文件和路径命名均使用英文，仅 PR 描述和 Markdown 文档可使用中文。
 
 ## 目录约定
 - 当创建源代码时，请在 `Sources/` 目录下放置主工程文件。
