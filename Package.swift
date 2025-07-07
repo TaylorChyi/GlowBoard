@@ -1,6 +1,4 @@
 // swift-tools-version: 6.1
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
@@ -9,17 +7,32 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .executable(name: "GlowBoard", targets: ["GlowBoard"])
+        .executable(name: "GlowBoard", targets: ["App"])
     ],
     targets: [
+        .target(
+            name: "Domain",
+            path: "Sources/Domain"
+        ),
+        .target(
+            name: "Infrastructure",
+            dependencies: ["Domain"],
+            path: "Sources/Infrastructure"
+        ),
+        .target(
+            name: "Presentation",
+            dependencies: ["Domain"],
+            path: "Sources/Presentation"
+        ),
         .executableTarget(
-            name: "GlowBoard",
-            path: "Sources/GlowBoard"
+            name: "App",
+            dependencies: ["Presentation", "Infrastructure", "Domain"],
+            path: "Sources/App"
         ),
         .testTarget(
-            name: "GlowBoardTests",
-            dependencies: ["GlowBoard"],
-            path: "Tests/GlowBoardTests"
+            name: "DomainTests",
+            dependencies: ["Domain"],
+            path: "Tests/DomainTests"
         )
     ]
 )
