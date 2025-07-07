@@ -1,10 +1,12 @@
 import Foundation
 
-public struct Script {
+public struct Script: Identifiable, Codable {
+    public let id: UUID
     public var text: String
     public var font: FontSetting
 
-    public init(text: String, font: FontSetting = FontSetting(fontName: "System")) {
+    public init(id: UUID = UUID(), text: String, font: FontSetting = FontSetting(fontName: "System")) {
+        self.id = id
         self.text = text
         self.font = font
     }
