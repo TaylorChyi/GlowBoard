@@ -5,9 +5,11 @@ import Domain
 
 @main
 struct GlowBoardApp: App {
+    private let settingsRepository = InMemorySettingsRepository()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(repository: settingsRepository)
         }
     }
 }
